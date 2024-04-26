@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:logins/pallete.dart';
+import 'package:logins/widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -12,20 +15,15 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-                'assets/images/fondo morado final.jpg'), // imagen del fondo
-                fit: BoxFit.cover,
-                
-          )),
-        ),
-         const Scaffold(
+
+
+        const Fondo(image : 'assets/images/fondo morado final.jpg'),
+
+           Scaffold(   //pantalla de login
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              Flexible(
+               const Flexible(
                 child: Center(
                   child: Text ('',
                    style: TextStyle(color: Colors.black, fontSize: 50,
@@ -35,25 +33,58 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               
-            TextInputField(
-              icon: CupertinoIcons.person_circle_fill, 
-              hint: 'Usuario',
-              inputType: TextInputType.name, 
-              inputAction: TextInputAction.next,
+             Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+               children: [
+                 const TextInputField(
+                  icon: CupertinoIcons.person_circle_fill, 
+                  hint: 'Usuario',
+                  inputType: TextInputType.name, 
+                  inputAction: TextInputAction.next,
+                  ),
+
+              const Password(     //boton de contraseña
+                icon: FontAwesomeIcons.lock, 
+                hint: 'Contraseña', 
+                inputType: TextInputType.name, 
+                inputAction: TextInputAction.done,
               ),
 
-            Password(
-              icon: FontAwesomeIcons.lock, 
-              hint: 'Contraseña', 
-              inputType: TextInputType.name, 
-              inputAction: TextInputAction.done,
+              GestureDetector(   //boton de olvido su contraseña
+                onTap: () => Navigator.pushNamed(context, 'Clave olvidada'),    //ruta a 'Olvido su contraseña
+                child: const Text('Clave olvidada?', style: kbodyText,
+                ),
               ),
 
-              SizedBox(
+              const SizedBox(
+                height: 25.0,
+                ),
+              
+              const Login_Button(buttonName: 'Login',),   //boton de login
+
+               const SizedBox(
                 height: 25.0,
                 ),
 
+                
+               ],
+             ),
+
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, 'Crea tu cuenta'),    //ruta a 'Crea tu cuenta'
+                  child: Container(child:
+                  const Text('Crea tu cuenta', 
+                  style:  kbodyText,),
+                  decoration: const BoxDecoration(border: 
+                  Border(bottom: BorderSide(color: kwhite, width: 1))),
+                  ),
+                ),   //boton de nueva cuenta
+              
+                const SizedBox(height: 20,
+              )
+             
             ],
+
           ) ,
         )
       ],
@@ -61,109 +92,8 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class Password extends StatelessWidget {      //boton de contraseña
-  const Password({
- Key? key,
-    required this.icon,
-    required this.hint,
-    required this.inputType,
-    required this.inputAction,
-    
-  }) : super(key: key);
 
-  final IconData icon;
-  final String hint;
-  final TextInputType inputType;
-  final TextInputAction inputAction;
 
-  @override
-  Widget build(BuildContext context) {
-    Size  size = MediaQuery.of(context).size;
+//AssetImage('assets/images/fondo morado final.jpg'),          ) 
 
-    return Padding(    //Boton de Contraseña
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Container(
-          height: size.height * 0.08,
-          width: size.width * 0.8,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(16),
-            
-          ),
-          child:   Center(
-            child: TextField(
-              decoration:  InputDecoration(
-                border: InputBorder.none,
-                hintText: hint,
-                hintStyle: kbodyText,
-                prefixIcon: Padding(
-                  padding:  const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Icon(icon, color: kBlack,
-                  ),
-                ),                        
-              ),
-              obscureText: true,
-              style: kbodyText,
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.done,
-        
-            ),
-          ),
-        ),
-      );
-  }
-}
 
-class TextInputField extends StatelessWidget {    //boton de usuario
-  const TextInputField({
-    Key? key,
-    required this.icon,
-    required this.hint,
-    required this.inputType,
-    required this.inputAction,
-    
-  }) : super(key: key);
-
-final IconData icon;
-final String hint;
-final TextInputType inputType;
-final TextInputAction inputAction;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Padding(    //Boton de usuario
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
-        height: size.height * 0.08,
-        width: size.width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(16),
-          
-        ),
-        child:   Center(
-          child: TextField(
-            decoration:  InputDecoration(
-              border: InputBorder.none,
-             
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Icon(
-                  icon ,
-                  size: 28.0,
-                 color: kBlack,),
-              ),
-               hintText: hint,
-              hintStyle: kbodyText,
-            ),
-            style: kbodyText,
-            keyboardType: inputType,
-            textInputAction: inputAction,
-      
-          ),
-        ),
-      ),
-    );
-  }
-}

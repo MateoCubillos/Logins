@@ -1,10 +1,11 @@
 # logins
 
-A new Flutter project.
+Primer proyecto en flutter
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+La idea es crear una app de calendario que sea de utlidad para guardar no solo como recordatorios de citas,
+sino tambien para revivir el pasado.
 
 A few resources to get you started if this is your first Flutter project:
 
