@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         'Login':(context) => const LoginScreen(),
         'Clave olvidada':(context) =>  ClaveOlvidada(),
         'Crea tu cuenta':(context) =>  NuevaCuenta(),
+        'calendario':(context) =>   calendarioApp(),
 
       },
     );

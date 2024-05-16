@@ -8,8 +8,8 @@ class Password extends StatelessWidget {      //boton de contraseña
  Key? key,
     required this.icon,
     required this.hint,
-    required this.inputType,
-    required this.inputAction,
+     required this.inputType,
+     required this.inputAction,
     
   }) : super(key: key);
 

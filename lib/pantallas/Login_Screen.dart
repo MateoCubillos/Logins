@@ -60,16 +60,27 @@ class LoginScreen extends StatelessWidget {
                 height: 25.0,
                 ),
               
-              const Login_Button(buttonName: 'Login',),   //boton de login
+              //const Login_Button(buttonName: 'Ingresar ',
+              //),                //boton de login
 
-               const SizedBox(
-                height: 25.0,
-                ),
+              
 
                 
                ],
              ),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, 'calendario'),    //ruta a 'calendario'
+                  child: Container(child:
+                  const Text('Ingresa',
+                  textAlign: TextAlign.center, 
+                  style:  kbodyText,),
+                  ),
+                ),
 
+               const SizedBox(
+                height: 25.0,
+                ),
+                
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, 'Crea tu cuenta'),    //ruta a 'Crea tu cuenta'
                   child: Container(child:

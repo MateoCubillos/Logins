@@ -19,9 +19,10 @@ class Login_Button extends StatelessWidget {
        height: size.height * 0.08,
        width: size.width * 0.8,
        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),),
-       child: TextButton(onPressed: (){},
+       child: TextButton(onPressed: ( ){},
        child: Text(buttonName,
        style: kbodyText.copyWith(fontWeight: FontWeight.bold),
+       
        ),
        ),
        );
